@@ -1,3 +1,6 @@
+name: User Story
+about: Template to create user stories for our kanban board
+
 **As a** [role]  
 **I need** [function]  
 **So that** [benefit]  
