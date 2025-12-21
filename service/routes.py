@@ -102,7 +102,7 @@ def read_account(id):
 @app.route("/accounts/<int:id>", methods=["PUT"])
 def update_account(id):
     """
-    Update an Accounr
+    Update an Account
     Endpoint updates an account with the given data
     """
 
@@ -121,7 +121,22 @@ def update_account(id):
 # DELETE AN ACCOUNT
 ######################################################################
 
-# ... place you code here to DELETE an account ...
+@app.route("/accounts/<int:id>", methods=["DELETE"])
+def delete_account(id):
+    """
+    Delete an Account
+    Endpoint deletes an existing account
+    """
+
+    app.logger.info(f"Request to delete Account with id {id}")
+
+    to_delete = Account.find(id)
+    if not to_delete:
+        abort(status.HTTP_404_NOT_FOUND, f"Account with id {id} can not be found")
+
+    to_delete.delete()
+
+    return "", status.HTTP_204_NO_CONTENT
 
 
 ######################################################################
