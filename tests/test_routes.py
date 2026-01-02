@@ -125,7 +125,7 @@ class TestAccountService(TestCase):
             content_type="test/html"
         )
         self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
-    
+
     def test_list_all(self):
         """It should retrun a list of all accounts"""
         self._create_accounts(10)
@@ -162,7 +162,7 @@ class TestAccountService(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         to_test = response.get_json()
         self.assertEqual(to_test["name"], "This is a test")
-    
+
     def test_update_invalid_account(self):
         """It should return 404 for a bad update request"""
         response = self.client.put(f"{BASE_URL}/0")
@@ -191,7 +191,7 @@ class TestAccountService(TestCase):
             }
         for key, value in headers.items():
             self.assertEqual(response.headers.get(key), value)
-    
+
     def test_security_policies(self):
         """It should use Flask-Cors to establish cross origin resource sharing policies"""
         response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
