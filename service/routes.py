@@ -63,7 +63,6 @@ def create_accounts():
 @app.route("/accounts", methods=["GET"])
 def list_accounts():
     """
-
     List all Accounts
     Endpoint retruns a list of all accounts
     """
@@ -81,7 +80,6 @@ def list_accounts():
 @app.route("/accounts/<int:id>", methods=["GET"])
 def read_account(id):
     """
-
     Read one account
     Endpoint returns requested account or not found
     """
@@ -108,10 +106,9 @@ def update_account(id):
     to_update = Account.find(id)
     if not to_update:
         abort(status.HTTP_404_NOT_FOUND, f"Account with id {id} can not be found")
-    
+
     to_update.deserialize(request.get_json())
     to_update.update()
-
     return to_update.serialize(), status.HTTP_200_OK
 
 ######################################################################
